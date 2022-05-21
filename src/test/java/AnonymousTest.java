@@ -1,5 +1,6 @@
 import Pages.BasketPage;
 import Pages.MainPage;
+import com.codeborne.selenide.junit.ScreenShooter;
 import com.codeborne.selenide.junit.TextReport;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
@@ -9,7 +10,8 @@ import static com.codeborne.selenide.Selenide.closeWebDriver;
 public class AnonymousTest {
     @Rule
     public TextReport report = new TextReport();
-
+    @Rule
+    public ScreenShooter makeScreenshotOnFailure = ScreenShooter.failedTests();
     @BeforeClass
     public static void setUp() {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide().screenshots(true).savePageSource(true));

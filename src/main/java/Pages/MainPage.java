@@ -2,13 +2,15 @@ package Pages;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.impl.Waiter;
 import org.openqa.selenium.By;
 
 import java.time.Duration;
+import java.util.logging.Logger;
 
 import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.page;
+import static com.codeborne.selenide.Selenide.*;
 
 public class MainPage extends CorePage {
     private String pageURL = "http://stels.kharkov.ua/";
@@ -29,7 +31,9 @@ public class MainPage extends CorePage {
 
 
     public MainPage checkBasketSizeEqualTo(String expectedSize) {
-        $(By.cssSelector(bucketSizeCss)).shouldHave(Condition.text(expectedSize), Duration.ofSeconds(10));
+        SelenideElement element = $(By.cssSelector(bucketSizeCss));
+        element.shouldHave(Condition.text(expectedSize), Duration.ofSeconds(10));
+
 //
 //        String actualText = $(By.cssSelector(bucketSizeCss)).getText();
 //        Assert.assertEquals(
